@@ -2,6 +2,11 @@ import os
 import sys
 import random
 
+def saveListAsFile(list, path):
+  with open(path, 'w') as file:
+    for i in list:
+      file.write(i+"\n")
+
 tra_factor = float(sys.argv[1])
 tes_factor = float(sys.argv[2])
 val_factor = float(sys.argv[3])
@@ -34,10 +39,13 @@ random.shuffle(val_data)
 random.shuffle(tes_data)
 random.shuffle(tra_data)
 
-print("All:\t\t"+str(len(slist)+len(nlist)))
-print("Training:\t"+str(len(tra_data)))
-print(tra_data)
-print("Test:\t\t"+str(len(tes_data)))
-print(tes_data)
-print("Validation:\t"+str(len(val_data)))
-print(val_data)
+
+tra_path = 'Processed data/training_set.txt'
+tes_path = 'Processed data/test_set.txt'
+val_path = 'Processed data/validation_set.txt'
+print("Training:\t"+str(len(tra_data))+" - saved to '"+tra_path+"'")
+saveListAsFile(tra_data, tra_path)
+print("Test:\t\t"+str(len(tes_data))+" - saved to '"+tes_path+"'")
+saveListAsFile(tes_data, tes_path)
+print("Validation:\t"+str(len(val_data))+" - saved to '"+val_path+"'")
+saveListAsFile(val_data, val_path)

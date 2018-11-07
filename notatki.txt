@@ -4,6 +4,6 @@ podzia³ 70/15/15
 konfigurowalne
 
 
-
-
-no findings = brak przes³anek czy brak omdlenia?
+RNN
+prototype, training
+wyzwania

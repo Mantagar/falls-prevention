@@ -29,7 +29,7 @@ def convertAll(input_folder, output_folder):
     dataframe = processMatlabFile(matfile)
     
     filename = filename.replace('.mat','.csv')
-    dataframe.to_csv(output_folder+filename)
+    dataframe.to_csv(output_folder+filename, index=False)
 
 convertAll('./Mat/Synkope/','./Processed data/Synkope/')
 convertAll('./Mat/No finding/','./Processed data/Nosynkope/')
