@@ -7,3 +7,7 @@ konfigurowalne
 RNN
 prototype, training
 wyzwania
+
+RNN architecture
+chunk, sequence length
+batches

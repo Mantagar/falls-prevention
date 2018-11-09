@@ -21,12 +21,12 @@ class RNN(torch.nn.Module):
     self.input_size = input_size
     self.hidden_size = hidden_size
     self.stacks = stacks
-    self.output_size = output_size    
+    self.output_size = output_size
     self.rnn = torch.nn.RNN(input_size, hidden_size, stacks)
     self.lastLayer = torch.nn.Linear(hidden_size, output_size)
   
   def forward(self, input_seq):
-    out, hidden_state = self.rnn(input_seq) 
+    out, hidden_state = self.rnn(input_seq)
     return self.lastLayer(out)
   
 
@@ -34,7 +34,7 @@ trainingDataPaths = loadListFromFile("Processed data/training_set.txt")
 validationDataPaths = loadListFromFile("Processed data/validation_set.txt")
 
 input_size = 2
-hidden_size = 200
+hidden_size = 100
 stacks = 1
 output_size = 1
 model = RNN(input_size, hidden_size, stacks, output_size).double()
@@ -42,10 +42,11 @@ model = RNN(input_size, hidden_size, stacks, output_size).double()
 
 epochs = 10
 loss_fn = torch.nn.MSELoss(reduction='sum')
-learning_rate = 1e-4
+learning_rate = 0.0005
 optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate)
 
 for epoch in range(epochs):
+  sum=0
   for sample in trainingDataPaths:
     data, target = getData(sample)
     
@@ -55,12 +56,13 @@ for epoch in range(epochs):
     pred = model(data)
 
     loss = loss_fn(pred, target)
-    print(loss)
+    sum+=loss
     loss.backward()
     
     optimizer.step()
   # printing scores for the validation set
   #for sample in validationDataPaths:
+  print(sum)
   random.shuffle(trainingDataPaths)
   
 
