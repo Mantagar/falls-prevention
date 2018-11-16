@@ -19,8 +19,9 @@ loc = "./Processed data/Synkope/"
 slist = os.listdir(loc)
 slist = [ loc+i for i in slist ]
 random.shuffle(slist)
-first_idx = int(len(slist)*val_factor)
-second_idx = first_idx + 1 + int(len(slist)*tes_factor)
+slen = len(slist)
+first_idx = int(slen*val_factor)
+second_idx = first_idx + 1 + int(slen*tes_factor)
 val_data = slist[0:first_idx]
 tes_data = slist[first_idx:second_idx]
 tra_data = slist[second_idx:]
@@ -29,11 +30,15 @@ loc = "./Processed data/Nosynkope/"
 nlist = os.listdir(loc)
 nlist = [ loc+i for i in nlist ]
 random.shuffle(nlist)
-first_idx = int(len(nlist)*val_factor)
-second_idx = first_idx + 1 + int(len(nlist)*tes_factor)
+nlen = len(nlist) #it is not used becouse
+#there is many more nosynkope files
+#so here I choose only as many as synkope ones
+first_idx = int(slen*val_factor)
+second_idx = first_idx + 1 + int(slen*tes_factor)
+third_idx = second_idx + 1 + int(slen*tra_factor)
 val_data += nlist[0:first_idx]
 tes_data += nlist[first_idx:second_idx]
-tra_data += nlist[second_idx:]
+tra_data += nlist[second_idx:third_idx]
 
 random.shuffle(val_data)
 random.shuffle(tes_data)

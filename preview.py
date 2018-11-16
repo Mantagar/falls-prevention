@@ -7,17 +7,17 @@ loc = "./Processed data/Synkope/"
 flist = os.listdir(loc)
 for i,f in enumerate(flist):
   print(i,f)
-value = int(input("File index:"))
+  
+while True:
+  value = int(input("File index:"))
+  data = read_csv(loc+flist[value])
 
+  pp.subplot(2, 1, 1)
+  pp.plot(data[['mBP']], label="mean blood pressure [beat]")
+  pp.ylabel('mBP')
 
-data = read_csv(loc+flist[value])
+  pp.subplot(2, 1, 2)
+  pp.plot(data[['HR']], label="heart rate [beat]")
+  pp.ylabel('HR')
 
-pp.subplot(2, 1, 1)
-pp.plot(data[['mBP']], label="mean blood pressure [beat]")
-pp.ylabel('mBP')
-
-pp.subplot(2, 1, 2)
-pp.plot(data[['HR']], label="heart rate [beat]")
-pp.ylabel('HR')
-
-pp.show()
+  pp.show()
