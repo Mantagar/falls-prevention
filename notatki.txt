@@ -11,3 +11,5 @@ wyzwania
 RNN architecture
 chunk, sequence length
 batches
+
+ltu, average, different batch sizes and epochs
