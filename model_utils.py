@@ -3,34 +3,47 @@ import pandas as pd
 import random
 import numpy
 
+
+class Batcher:
+  def __init__(self, dataPaths, seq_size, batch_size):
+    self.seq_size = seq_size
+    self.batch_size = batch_size
+    self.dataPaths = dataPaths
+    self.data = []
+    for path in dataPaths:
+      values = pd.read_csv(path).values
+      key = 1 if "Nosynkope" in path else 0
+      seq_index = 0
+      while seq_index+seq_size<len(values):
+        self.data.append([key, values[seq_index:seq_index+seq_size]])
+        seq_index += 1
+    self.sample_amount = len(self.data)
+    self.nextEpoch()
+        
+  def nextEpoch(self):
+    data = random.sample(self.data, len(self.data))
+    self.id = 0
+  
+  def hasNextBatch(self):
+    return self.id + self.batch_size < self.sample_amount
+    
+  def nextBatch(self):
+    batch_x = torch.from_numpy(self.data[self.id][1]).reshape(self.seq_size, 1, -1)
+    batch_y = torch.LongTensor([self.data[self.id][0]]).repeat(self.seq_size).reshape(self.seq_size, 1)
+    self.id += 1
+    for i in range(self.batch_size-1):
+      x = torch.from_numpy(self.data[self.id][1]).reshape(self.seq_size, 1, -1)
+      y = torch.LongTensor([self.data[self.id][0]]).repeat(self.seq_size).reshape(self.seq_size, 1)
+      batch_x = torch.cat((batch_x, x), 1)
+      batch_y = torch.cat((batch_y, y), 1)
+      self.id += 1
+    return batch_x, batch_y
+
 def loadListFromFile(path):
   with open(path, 'r') as file:
     list = file.readlines()
   return [ item.replace('\n', '') for item in list ]
-  
-def createMiniBatch(input, seq_index, seq_size, batch_size, input_size):
-  #prepare a mini-batch of sequences (technically a sequence of mini-batches)
-  batch = torch.from_numpy(input[seq_index:seq_index+seq_size]).reshape(seq_size, 1, input_size)
-  seq_index += 1
-  for i in range(1, batch_size):
-    seq = torch.from_numpy(input[seq_index:seq_index+seq_size]).reshape(seq_size, 1, input_size)
-    batch = torch.cat((batch, seq), 1)
-    seq_index += 1
-  return batch, seq_index
 
-def calculateAverageLoss(model, dataPaths):
-  loss_fn = torch.nn.CrossEntropyLoss()
-  avg_loss = 0
-  for path in dataPaths:
-    df = pd.read_csv(path)
-    input = df.values
-    target = torch.LongTensor([0]) if "Nosynkope" in path else torch.LongTensor([1])
-    batch, _ = createMiniBatch(input, 0, len(input), 1, model.input_size)
-    pred = model(batch)[-1].view(1, model.output_size)
-    avg_loss += loss_fn(pred, target).detach().numpy()
-  avg_loss /= len(dataPaths)
-  return avg_loss
-  
 class RNN(torch.nn.Module):
   def __init__(self, input_size, hidden_size, stacks, output_size):
     super(RNN, self).__init__()
@@ -40,9 +53,10 @@ class RNN(torch.nn.Module):
     self.output_size = output_size
     self.rnn = torch.nn.GRU(input_size=input_size, hidden_size=hidden_size, num_layers=stacks)
     self.lastLayer = torch.nn.Linear(hidden_size, output_size)
-    self.activFunc = torch.nn.Softmax(dim=2)
+    self.softmax = torch.nn.Softmax(dim=2)
   
-  def forward(self, batch):
-    out, hidden_state = self.rnn(batch)
+  def forward(self, batch, hidden_state):
+    out, next_hidden_state = self.rnn(batch)
     out = self.lastLayer(out)
-    return self.activFunc(out)
+    out = self.softmax(out)
+    return out, next_hidden_state

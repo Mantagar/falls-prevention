@@ -19,6 +19,8 @@ def processMatlabFile(matfile):
   dataframe.interpolate(method="linear", inplace=True)
   dataframe.fillna(method="bfill", inplace=True)
   dataframe.fillna(method="ffill", inplace=True)
+  #normalization?
+  #padding and cutting data to length of 3000
   return dataframe
   
 def convertAll(input_folder, output_folder):
