@@ -5,20 +5,21 @@ trainingDataPaths = loadListFromFile("Processed data/training_set.txt")
 validationDataPaths = loadListFromFile("Processed data/validation_set.txt")
 
 input_size = pd.read_csv(trainingDataPaths[0]).shape[1]
-hidden_size = int(sys.argv[1])
+hidden_size = 100
 stacks = 1
 output_size = 2
 model = RNN(input_size, hidden_size, stacks, output_size).double()
 
 epochs = 200
-batch_size = 100
+batch_size = 20
 seq_size = 50
 loss_fn = torch.nn.CrossEntropyLoss()
-learning_rate = 0.01 #best 0.01 (or 1/batch_size)
+learning_rate = 1/batch_size
 optimizer = torch.optim.Adadelta(model.parameters(), lr=learning_rate)
 
 batcher = Batcher(trainingDataPaths, seq_size, batch_size)
 
+accuracy = 0
 #print("EPOCH\t\tTRAINING LOSS\t\t\tVALIDATION LOSS")
 for epoch in range(epochs):
   #training
@@ -38,7 +39,12 @@ for epoch in range(epochs):
     
     optimizer.step()
     print(loss.detach().numpy(), flush=True)
-  torch.save(model, 'checkpoints/'+str(hidden_size)+".model")
+  current_accuracy = test(model, validationDataPaths)
+  if current_accuracy >= accuracy:
+    accuracy = current_accuracy
+  else:
+    break
+  torch.save(model, 'checkpoints/'+str(seq_size)+".model")
   batcher.nextEpoch()
   
   

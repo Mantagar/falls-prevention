@@ -25,7 +25,7 @@ for col in data.columns.values:
 avg_df.plot(kind='line')
 pp.xlabel('Steps')
 pp.ylabel('Loss (average of '+str(step)+' steps)')
-pp.legend(title='Learning rate')
-pp.title('\nbatch_size = 100\nseq_size = 50')
+pp.legend(title='Sequence length')
+pp.title('\nbatch_size = 100\nlearning rate = 0.01')
 
 pp.show()

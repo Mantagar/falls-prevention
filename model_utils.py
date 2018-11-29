@@ -53,10 +53,33 @@ class RNN(torch.nn.Module):
     self.output_size = output_size
     self.rnn = torch.nn.GRU(input_size=input_size, hidden_size=hidden_size, num_layers=stacks)
     self.lastLayer = torch.nn.Linear(hidden_size, output_size)
-    self.softmax = torch.nn.Softmax(dim=2)
   
   def forward(self, batch, hidden_state):
     out, next_hidden_state = self.rnn(batch)
     out = self.lastLayer(out)
-    out = self.softmax(out)
     return out, next_hidden_state
+
+def test(model, dataPaths):
+  softmax = torch.nn.Softmax(dim=2)
+  accuracy = 0
+  for path in dataPaths:
+    outp = 1
+    target = 1 if "Nosynkope" in path else 0
+    hidden_state = None
+    values = pd.read_csv(path).values
+    max_synk = 0
+    for sample in values:
+      input = torch.from_numpy(sample).view(1, 1, -1)
+      pred, hidden_state = model(input, hidden_state)
+      pred = softmax(pred)
+      pred = pred[-1].view(model.output_size).detach().numpy()
+      if max_synk < pred[0]:
+        max_synk = pred[0]
+    if max_synk > 0.9:
+      outp = 0
+    if outp == target:
+      accuracy += 1
+    print("["+str(target)+"] "+str(max_synk), flush=True)
+  accuracy /= len(dataPaths)
+  return accuracy
+  
