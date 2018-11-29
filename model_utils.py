@@ -62,24 +62,24 @@ class RNN(torch.nn.Module):
 def test(model, dataPaths):
   softmax = torch.nn.Softmax(dim=2)
   accuracy = 0
+  df = pd.DataFrame()
   for path in dataPaths:
+    flow = []
     outp = 1
     target = 1 if "Nosynkope" in path else 0
     hidden_state = None
     values = pd.read_csv(path).values
-    max_synk = 0
     for sample in values:
       input = torch.from_numpy(sample).view(1, 1, -1)
       pred, hidden_state = model(input, hidden_state)
       pred = softmax(pred)
       pred = pred[-1].view(model.output_size).detach().numpy()
-      if max_synk < pred[0]:
-        max_synk = pred[0]
-    if max_synk > 0.9:
-      outp = 0
+      flow.append(pred[0])
+      if pred[0] > 0.95:
+        outp = 0
+    df[path] = pd.Series(flow)
     if outp == target:
       accuracy += 1
-    print("["+str(target)+"] "+str(max_synk), flush=True)
   accuracy /= len(dataPaths)
-  return accuracy
+  return accuracy, df
   

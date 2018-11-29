@@ -5,13 +5,13 @@ trainingDataPaths = loadListFromFile("Processed data/training_set.txt")
 validationDataPaths = loadListFromFile("Processed data/validation_set.txt")
 
 input_size = pd.read_csv(trainingDataPaths[0]).shape[1]
-hidden_size = 100
+hidden_size = 500
 stacks = 1
 output_size = 2
 model = RNN(input_size, hidden_size, stacks, output_size).double()
 
 epochs = 200
-batch_size = 20
+batch_size = 100
 seq_size = 50
 loss_fn = torch.nn.CrossEntropyLoss()
 learning_rate = 1/batch_size
@@ -39,7 +39,7 @@ for epoch in range(epochs):
     
     optimizer.step()
     print(loss.detach().numpy(), flush=True)
-  current_accuracy = test(model, validationDataPaths)
+  current_accuracy, _ = test(model, validationDataPaths)
   if current_accuracy >= accuracy:
     accuracy = current_accuracy
   else:

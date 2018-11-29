@@ -10,22 +10,23 @@ step = int(sys.argv[2])
 
 data = read_csv(path)
 
-avg_df = pd.DataFrame()
-for col in data.columns.values:
-  new = []
-  vals = data[col]
-  size = len(vals)
-  i = 0
-  while i<size:
-    new.append(numpy.mean(vals[i:i+1000]))
-    i+=step
-  avg_df[col] = pd.Series(new)
-
+avgdf = pd.DataFrame()
+for col in data:
+  avgdf[col] = data[col].rolling(step, center=True).mean().fillna(method='ffill').fillna(method='bfill')
   
-avg_df.plot(kind='line')
+colors = []
+for col in avgdf:
+  if 'Nosynkope' in col:
+    colors.append('red')
+  elif 'Synkope' in col:
+    colors.append('green')
+if len(colors)==0:
+  colors = None
+
+avgdf.plot(kind='line', color=colors)
 pp.xlabel('Steps')
 pp.ylabel('Loss (average of '+str(step)+' steps)')
-pp.legend(title='Sequence length')
-pp.title('\nbatch_size = 100\nlearning rate = 0.01')
+pp.legend(title='Range')
+pp.title('')
 
 pp.show()
