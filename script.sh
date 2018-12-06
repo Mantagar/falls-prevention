@@ -1,14 +1,15 @@
 #!/bin/bash -l
 #SBATCH --ntasks=1
-#SBATCH --time=72:00:00
+#SBATCH --time=20:00:00
 #SBATCH -A fallp
 #SBATCH -p plgrid
-#SBATCH -J RNN
-#SBATCH --output="20.out"
+#SBATCH -J RNN_50
+#SBATCH --output="50.out"
 
 module add plgrid/tools/python/3.6.5
 module add test/torch
 
 cd $SLURM_SUBMIT_DIR
 
-srun python3.6 ./train.py
+srun python3.6 ./train.py 50
+  

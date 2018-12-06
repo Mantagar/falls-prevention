@@ -21,7 +21,7 @@ class Batcher:
     self.nextEpoch()
         
   def nextEpoch(self):
-    data = random.sample(self.data, len(self.data))
+    self.data = random.sample(self.data, len(self.data))
     self.id = 0
   
   def hasNextBatch(self):
@@ -75,7 +75,7 @@ def test(model, dataPaths):
       pred = softmax(pred)
       pred = pred[-1].view(model.output_size).detach().numpy()
       flow.append(pred[0])
-      if pred[0] > 0.95:
+      if pred[0] > 0.8:
         outp = 0
     df[path] = pd.Series(flow)
     if outp == target:

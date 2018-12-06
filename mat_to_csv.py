@@ -43,13 +43,15 @@ def processMatlabFile(matfile):
   
 def convertAll(input_folder, output_folder):
   for filename in os.listdir(input_folder):
-    print(input_folder+filename+"\t\t----->\t\t"+output_folder+filename)
     matfile = sio.loadmat(input_folder+filename)
+    output_filename = filename.replace('.mat','.csv')
     
     dataframe = processMatlabFile(matfile)
-    
-    filename = filename.replace('.mat','.csv')
-    dataframe.to_csv(output_folder+filename, index=False)
+    if dataframe.isnull().values.any()==False and dataframe.shape[0]>1000:
+      print(input_folder+filename+"\t\t----->\t\t"+output_folder+output_filename)    
+      dataframe.to_csv(output_folder+output_filename, index=False)
+    else:
+      print(input_folder+filename+"\t\t----->\t\twas rejected!")
 
 convertAll('./Mat/Synkope/','./Processed data/Synkope/')
 convertAll('./Mat/No finding/','./Processed data/Nosynkope/')

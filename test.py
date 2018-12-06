@@ -4,8 +4,11 @@ import sys
   
 testDataPaths = loadListFromFile("Processed data/test_set.txt")
 
-model = torch.load(sys.argv[1])
+name = sys.argv[1]
+
+model = torch.load('checkpoints/'+name+'.model')
 
 accuracy, df = test(model, testDataPaths)
+print(accuracy)
 
-df.to_csv('test.csv', index=False)
+df.to_csv(name+'.csv', index=False)

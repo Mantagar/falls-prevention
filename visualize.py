@@ -20,13 +20,19 @@ for col in avgdf:
     colors.append('red')
   elif 'Synkope' in col:
     colors.append('green')
+
 if len(colors)==0:
   colors = None
-
-avgdf.plot(kind='line', color=colors)
-pp.xlabel('Steps')
-pp.ylabel('Loss (average of '+str(step)+' steps)')
-pp.legend(title='Range')
-pp.title('')
+  avgdf.plot(kind='line', color=colors)
+  pp.xlabel('Steps')
+  pp.ylabel('Loss (average of '+str(step)+' steps)')
+  pp.legend(title='Learning rate')
+  pp.title('batch_size = 16')
+else:
+  avgdf.plot(kind='line', color=colors)
+  pp.xlabel('Steps')
+  pp.ylabel('Classification (average of '+str(step)+' steps)')
+  pp.legend(title='Series')
+  pp.title('')
 
 pp.show()
