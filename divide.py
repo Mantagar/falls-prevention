@@ -30,10 +30,10 @@ loc = "./Processed data/Nosynkope/"
 nlist = os.listdir(loc)
 nlist = [ loc+i for i in nlist ]
 random.shuffle(nlist)
-nlen = len(nlist)
-first_idx = int(nlen*val_factor)
-second_idx = first_idx + 1 + int(nlen*tes_factor)
-third_idx = second_idx + 1 + int(nlen*tra_factor)
+nlen = len(nlist)#not used (balancing data)
+first_idx = int(slen*val_factor)
+second_idx = first_idx + 1 + int(slen*tes_factor)
+third_idx = second_idx + 1 + int(slen*tra_factor)
 val_data += nlist[0:first_idx]
 tes_data += nlist[first_idx:second_idx]
 tra_data += nlist[second_idx:third_idx]

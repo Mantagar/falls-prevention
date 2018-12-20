@@ -69,17 +69,22 @@ def test(model, dataPaths):
     target = 1 if "Nosynkope" in path else 0
     hidden_state = None
     values = pd.read_csv(path).values
+    counter = 0
     for sample in values:
       input = torch.from_numpy(sample).view(1, 1, -1)
       pred, hidden_state = model(input, hidden_state)
       pred = softmax(pred)
       pred = pred[-1].view(model.output_size).detach().numpy()
-      flow.append(pred[0])
-      if pred[0] > 0.8:
-        outp = 0
+      counter += 1
+      if counter>500:
+        flow.append(pred[0])
+        if pred[0] > 0.7:
+          outp = 0
+          break
     df[path] = pd.Series(flow)
     if outp == target:
       accuracy += 1
+    #print(str(outp)+"["+str(target)+"]")
   accuracy /= len(dataPaths)
   return accuracy, df
   

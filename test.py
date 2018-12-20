@@ -2,7 +2,7 @@ from model_utils import *
 import sys
 
   
-testDataPaths = loadListFromFile("Processed data/test_set.txt")
+testDataPaths = loadListFromFile("Processed data/training_set.txt")
 
 name = sys.argv[1]
 
