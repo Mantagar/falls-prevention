@@ -1,11 +1,11 @@
 function createScript()
 {
-  cat template.sh | sed -e 's/STACKS/'$1'/g'  > script.sh
+  cat template.sh | sed -e 's/ARG/'$1'/g'  > script.sh
 }
 
-for stacks in 2 3 4 5
+for hidden in 50 75 100 125 150
 do
-  createScript $stacks
+  createScript $hidden
   sbatch script.sh
 done
 
