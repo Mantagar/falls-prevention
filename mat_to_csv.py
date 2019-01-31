@@ -14,7 +14,8 @@ def processMatlabFile(matfile, cropback):
   #filtering .mat file 
   hr = combineMatArrays(matfile['BeatToBeat']['HR'])
   bp = combineMatArrays(matfile['BeatToBeat']['mBP'])
-  mapping = {'HR': hr, 'mBP': bp}
+  sv = combineMatArrays(matfile['BeatToBeat']['SV'])
+  mapping = {'HR': hr, 'mBP': bp, 'SV': sv}
   dataframe = pd.DataFrame(data=mapping)
   #croping first 500 and last 500 samples
   if cropback:
@@ -36,11 +37,6 @@ def processMatlabFile(matfile, cropback):
   dataframe = df_copy
   #removing NaN values after outliers removal
   dataframe = dataframe.interpolate(method="linear").fillna(method="bfill").fillna(method="ffill")
-  '''
-  #smoothing
-  #dataframe = dataframe.rolling(window=80).mean()
-  #dataframe = dataframe.iloc[80:]
-  '''
   #normalization
   dataframe = ((dataframe - dataframe.min())/(dataframe.max() - dataframe.min()) - 0.5) * 2
   return dataframe
@@ -52,7 +48,7 @@ def convertAll(input_folder, output_folder, cropback):
     
     dataframe = processMatlabFile(matfile, cropback)
     if dataframe.isnull().values.any()==False and dataframe.shape[0]>500:
-      print(input_folder+filename+"\t\t----->\t\t"+output_folder+output_filename)    
+      print(input_folder+filename+"\t\t----->\t\t"+output_folder+output_filename,dataframe.shape)    
       dataframe.to_csv(output_folder+output_filename, index=False)
     else:
       print(input_folder+filename+"\t\t----->\t\twas rejected!")
