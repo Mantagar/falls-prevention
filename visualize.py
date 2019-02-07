@@ -33,10 +33,10 @@ for col in avgdf:
     colors.append('red')
   elif 'Synkope' in col:
     colors.append('green')
-avgdf.plot(kind='line', color=colors)
+avgdf.plot(kind='line', color=colors, legend=None)
 pp.xlabel('Steps')
 pp.ylabel('Classification (average of '+str(step)+' steps)')
-pp.legend(title='Series')
+#pp.legend(title='Series')
 pp.title('')
 
 pp.show()

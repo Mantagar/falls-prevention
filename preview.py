@@ -27,10 +27,6 @@ while True:
   pp.ylabel('HR')
   
   pp.subplot(2, 2, 3)
-  pp.plot(data[['RRI']], label="")
-  pp.ylabel('RRI')
-  
-  pp.subplot(2, 2, 4)
   pp.plot(data[['SV']], label="")
   pp.ylabel('SV')
 

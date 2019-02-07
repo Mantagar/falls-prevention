@@ -76,11 +76,10 @@ def test(model, dataPaths):
       pred = softmax(pred)
       pred = pred[-1].view(model.output_size).detach().numpy()
       counter += 1
-      if counter>500:
+      if counter>300:
         flow.append(pred[0])
-        if pred[0] > 0.7:
+        if pred[0] > 0.9:
           outp = 0
-          break
     df[path] = pd.Series(flow)
     if outp == target:
       accuracy += 1
