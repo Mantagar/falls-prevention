@@ -18,16 +18,12 @@ while True:
   else:
     data = read_csv(loc_n+flist[value])
 
-  pp.subplot(2, 2, 1)
+  pp.subplot(2, 1, 1)
   pp.plot(data[['mBP']], label="mean blood pressure [beat]")
   pp.ylabel('mBP')
 
-  pp.subplot(2, 2, 2)
+  pp.subplot(2, 1, 2)
   pp.plot(data[['HR']], label="heart rate [beat]")
   pp.ylabel('HR')
-  
-  pp.subplot(2, 2, 3)
-  pp.plot(data[['SV']], label="")
-  pp.ylabel('SV')
 
   pp.show()

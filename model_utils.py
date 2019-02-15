@@ -61,12 +61,9 @@ class RNN(torch.nn.Module):
 
 def test(model, dataPaths):
   softmax = torch.nn.Softmax(dim=2)
-  accuracy = 0
   df = pd.DataFrame()
   for path in dataPaths:
     flow = []
-    outp = 1
-    target = 1 if "Nosynkope" in path else 0
     hidden_state = None
     values = pd.read_csv(path).values
     counter = 0
@@ -78,12 +75,6 @@ def test(model, dataPaths):
       counter += 1
       if counter>300:
         flow.append(pred[0])
-        if pred[0] > 0.9:
-          outp = 0
     df[path] = pd.Series(flow)
-    if outp == target:
-      accuracy += 1
-    #print(str(outp)+"["+str(target)+"]")
-  accuracy /= len(dataPaths)
-  return accuracy, df
+  return df
   

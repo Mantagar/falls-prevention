@@ -6,9 +6,14 @@ validationDataPaths = loadListFromFile("Processed data/validation_set.txt")
 
 input_size = pd.read_csv(trainingDataPaths[0]).shape[1]
 output_size = 2
-hidden_size = int(sys.argv[1])
+hidden_size = 100
 stacks = 2
-model = RNN(input_size, hidden_size, stacks, output_size).double()
+
+if len(sys.argv)>1:
+  name = sys.argv[1]
+  model = torch.load('checkpoints/'+name+'.model')
+else:
+  model = RNN(input_size, hidden_size, stacks, output_size).double()
 
 epochs = 200
 batch_size = 16
@@ -51,8 +56,11 @@ for epoch in range(epochs):
       print(avg_loss, flush=True)
       avg_loss = 0
       counter = 0
-  accuracy, df = test(model, validationDataPaths)
-  name = str(hidden_size)+'_'+str(epoch)+'_'+str(accuracy)
+  df = test(model, validationDataPaths)
+  if len(sys.argv)>1:
+    name = sys.argv[1]+'_'+str(epoch)
+  else:
+    name = str(epoch)
   df.to_csv(name+'.csv', index=False)
   torch.save(model, 'checkpoints/'+name+".model")
   batcher.nextEpoch()
