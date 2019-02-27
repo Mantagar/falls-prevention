@@ -7,5 +7,5 @@
 *.zip
 
 *.tuner
+*.out
 checkpoints/*
-csv/*
