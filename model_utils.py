@@ -39,11 +39,6 @@ class Batcher:
       self.id += 1
     return batch_x, batch_y
 
-def loadListFromFile(path):
-  with open(path, 'r') as file:
-    list = file.readlines()
-  return [ item.replace('\n', '') for item in list ]
-
 class RNN(torch.nn.Module):
   def __init__(self, input_size, hidden_size, stacks, output_size):
     super(RNN, self).__init__()
@@ -59,7 +54,7 @@ class RNN(torch.nn.Module):
     out = self.lastLayer(out)
     return out, next_hidden_state
 
-def test(model, dataPaths):
+def testModel(model, dataPaths):
   softmax = torch.nn.Softmax(dim=2)
   df = pd.DataFrame()
   for path in dataPaths:
@@ -78,3 +73,64 @@ def test(model, dataPaths):
     df[path] = pd.Series(flow)
   return df
   
+def trainModel(model, batcher, maxEpochs=1, learningRate=1, learningRateDecay=0.9, printLoss=False):
+  loss_fn = torch.nn.CrossEntropyLoss()
+  optimizer = torch.optim.Adadelta(model.parameters(), lr=learningRate)
+  decay_lambda = lambda epoch: learningRateDecay ** epoch
+  lr_decay = torch.optim.lr_scheduler.LambdaLR(optimizer, lr_lambda=decay_lambda)
+  lr_decay.step()
+
+  packetSize = batcher.batch_size*batcher.seq_size
+
+  for epoch in range(maxEpochs):
+    if printLoss:
+      counter = 0
+      avg_loss = 0
+      log_every = 10
+      
+    while batcher.hasNextBatch():
+      x, y = batcher.nextBatch()
+
+      optimizer.zero_grad()
+      
+      pred, _ = model(x, None)
+      
+      pred = pred.view(packetSize, model.output_size)
+      y = y.view(packetSize)
+      
+      loss = loss_fn(pred, y)
+      
+      loss.backward()
+      
+      optimizer.step()
+      
+      if printLoss:
+        avg_loss += loss.detach().numpy()
+        counter += 1
+        if counter%log_every==0:
+          avg_loss /= log_every
+          print(avg_loss, flush=True)
+          avg_loss = 0
+          counter = 0
+          
+    batcher.nextEpoch()
+    lr_decay.step()
+  for param_group in optimizer.param_groups:
+    return param_group['lr']
+
+def loadDataPaths(path):
+  with open(path, 'r') as file:
+    list = file.readlines()
+  list = [item.replace('\n', '') for item in list]
+  return list, pd.read_csv(list[0]).shape[1], 2
+  
+def getAccuracy(data, threshold):
+  correct = 0.
+  all = 0.
+  for c in data:
+    real_negative = 'Nosynkope' in column
+    max_value = data[c].max()
+    if (real_negative==True and max_value<threshold) or (real_negative==False and max_value>=threshold):
+      correct += 1
+    all += 1
+  return correct/all

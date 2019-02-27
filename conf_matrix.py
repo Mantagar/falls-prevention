@@ -8,10 +8,9 @@ import sys
 path = sys.argv[1]
 
 data = read_csv(path)
-data = data.fillna(method="ffill")
 
-threshold = 0.2
-density = 0.01
+threshold = 0.3
+density = 0.001
 
 x = []
 y = []
@@ -27,11 +26,8 @@ while threshold<1:
   TN = 0;
   FN = 0;
   for c in data:
-    max_value = 0;
     real_negative = 'Nosynkope' in c
-    for r in data[c]:
-      if r>max_value:
-        max_value=r
+    max_value = data[c].max()
     
     if real_negative:
       if max_value>=threshold:#classified as synkope
@@ -53,7 +49,7 @@ while threshold<1:
   NPV = FP / (FP + FN + e)
  
   x.append(threshold)
-  y.append(accuracy)
+  y.append([accuracy, sensitivity])#, specificity, PPV, NPV])
   if accuracy > best_accuracy:
     best_accuracy = accuracy
     best_threshold = threshold
@@ -67,11 +63,11 @@ while threshold<1:
   threshold += density
 
 print(log)
-print("THRESHOLD: "+str(best_threshold))
-print("ACCURACY: "+str(best_accuracy))
+print("Best threshold: "+str(best_threshold))
+print("Best accuracy: "+str(best_accuracy))
 print()
 if len(sys.argv)<=2:
-  pp.plot(x,y)
+  pp.plot(x, y)
+  pp.gca().legend(("Accuracy","Sensitivity"))#, "Specificity", "PPV (Precision)", "NPV"))
   pp.xlabel('Threshold')
-  pp.ylabel('Accuracy')
   pp.show()
