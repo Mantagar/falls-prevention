@@ -127,9 +127,9 @@ def loadDataPaths(path):
 def getAccuracy(data, threshold):
   correct = 0.
   all = 0.
-  for c in data:
+  for column in data:
     real_negative = 'Nosynkope' in column
-    max_value = data[c].max()
+    max_value = data[column].max()
     if (real_negative==True and max_value<threshold) or (real_negative==False and max_value>=threshold):
       correct += 1
     all += 1

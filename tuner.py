@@ -29,7 +29,7 @@ if len(sys.argv)>1:
 else:
   args = {'n_random_starts': 10}
   
-res = gp_minimize(errorRate, [(50,200), (1,3), (50,300), (0,6), (-3.,0.), (0.8, 0.99), (0.5,1.)], n_calls=20, callback=saveCheckpoint, **args)
+res = gp_minimize(errorRate, [(50,200), (1,3), (50,300), (0,6), (-3.,0.), (0.8, 0.99), (0.5,1.)], n_calls=50, callback=saveCheckpoint, **args)
 
 print(res.x)
 print(res.fun)
