@@ -1,9 +1,9 @@
 from model_utils import *
 import sys
 
-hiddenSize=100
-depth=2
-sequenceLength=100
+hiddenSize=50
+depth=1
+sequenceLength=300
 minibatchSize=16
 lr=1
 lrd=0.9

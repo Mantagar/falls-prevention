@@ -8,32 +8,37 @@ class Batcher:
   def __init__(self, dataPaths, seq_size, batch_size):
     self.seq_size = seq_size
     self.batch_size = batch_size
-    self.dataPaths = dataPaths
+    self.meta = []
     self.data = []
+    data_index = 0
     for path in dataPaths:
       values = pd.read_csv(path).values
-      key = 1 if "Nosynkope" in path else 0
+      target = 1 if "Nosynkope" in path else 0
       seq_index = 0
       while seq_index+seq_size<len(values):
-        self.data.append([key, values[seq_index:seq_index+seq_size]])
+        self.meta.append((target, data_index, seq_index))
         seq_index += 1
-    self.sample_amount = len(self.data)
+      self.data.append(values)
+      data_index += 1
+    self.sample_amount = len(self.meta)
     self.nextEpoch()
         
   def nextEpoch(self):
-    self.data = random.sample(self.data, len(self.data))
+    self.meta = random.sample(self.meta, len(self.meta))
     self.id = 0
   
   def hasNextBatch(self):
     return self.id + self.batch_size < self.sample_amount
     
   def nextBatch(self):
-    batch_x = torch.from_numpy(self.data[self.id][1]).reshape(self.seq_size, 1, -1)
-    batch_y = torch.LongTensor([self.data[self.id][0]]).repeat(self.seq_size).reshape(self.seq_size, 1)
+    (target, data_index, seq_index) = self.meta[self.id]
+    batch_x = torch.from_numpy(self.data[data_index][seq_index:seq_index+self.seq_size]).reshape(self.seq_size, 1, -1)
+    batch_y = torch.LongTensor([target]).repeat(self.seq_size).reshape(self.seq_size, 1)
     self.id += 1
     for i in range(self.batch_size-1):
-      x = torch.from_numpy(self.data[self.id][1]).reshape(self.seq_size, 1, -1)
-      y = torch.LongTensor([self.data[self.id][0]]).repeat(self.seq_size).reshape(self.seq_size, 1)
+      (target, data_index, seq_index) = self.meta[self.id]
+      x = torch.from_numpy(self.data[data_index][seq_index:seq_index+self.seq_size]).reshape(self.seq_size, 1, -1)
+      y = torch.LongTensor([target]).repeat(self.seq_size).reshape(self.seq_size, 1)
       batch_x = torch.cat((batch_x, x), 1)
       batch_y = torch.cat((batch_y, y), 1)
       self.id += 1
