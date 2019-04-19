@@ -5,17 +5,22 @@ from model_utils import *
 from skopt import load, dump
 import sys
 
-def saveCheckpoint(res):
-  pass
-  
 def errorRate(res):
   pass
+  
+class CheckpointSaver(object):
+  def __init__(self, name):
+    self.name = name
+    
+  def __call__(self, res):
+     dump(res, 'checkpoints/'+self.name+'.tuner', store_objective=False)
 
 res = load(sys.argv[1])
 
 print(res.x)
 print(res.fun)
 print("Iteration no:", len(res.func_vals))
+print(len(res.models))
 
-#sp.plot_objective(res)
-#pp.show()
+sp.plot_objective(res)
+pp.show()

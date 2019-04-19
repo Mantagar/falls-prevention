@@ -1,5 +1,6 @@
 from model_utils import *
 import sys
+import time
 
 hiddenSize=50
 depth=1
@@ -14,7 +15,7 @@ if len(sys.argv)>1:
   modelName = sys.argv[1]
   model = torch.load('checkpoints/'+modelName+'.model')
 else:
-  modelName = "network_"+str(random.randint(100000,1000000))
+  modelName = str(int(time.time()))
   model = RNN(inputSize, hiddenSize, depth, outputSize).double()
   
 batcher = Batcher(dataPaths, sequenceLength, minibatchSize)
