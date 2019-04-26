@@ -28,8 +28,6 @@ if len(sys.argv)>2:
   density = 1#only one run of the loop
   print("data_id\t\ttime_diff")
   
-#TODO wykres średniej różnicy czasu od accuracy dla tego i z bayesem
-  
 timestamps = pd.read_csv("Synkope_timestamps.csv")
 best_accuracy = 0
 best_threshold = 0
