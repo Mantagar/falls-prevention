@@ -51,11 +51,15 @@ class RNN(torch.nn.Module):
     self.hidden_size = hidden_size
     self.stacks = stacks
     self.output_size = output_size
+    #VANILLA
     self.rnn = torch.nn.GRU(input_size=input_size, hidden_size=hidden_size, num_layers=stacks)
     self.lastLayer = torch.nn.Linear(hidden_size, output_size)
+    #BIDIRECTIONAL
+    #self.rnn = torch.nn.GRU(input_size=input_size, hidden_size=hidden_size, num_layers=stacks, bidirectional=True)
+    #self.lastLayer = torch.nn.Linear(2*hidden_size, output_size)
   
   def forward(self, batch, hidden_state):
-    out, next_hidden_state = self.rnn(batch)
+    out, next_hidden_state = self.rnn(batch, hidden_state)
     out = self.lastLayer(out)
     return out, next_hidden_state
 

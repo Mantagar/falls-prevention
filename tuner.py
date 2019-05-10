@@ -12,13 +12,14 @@ def errorRate(x):
   minibatchSize = 16
   lr = 1.0
   lrd = 0.9
-  threshold = 0.6
+  threshold = 0.7
   
-  dataPaths, inputSize, outputSize = loadDataPaths("Processed data/validation_set.txt")
+  dataPaths, inputSize, outputSize = loadDataPaths("Processed data/training_set.txt")
   model = RNN(inputSize, hiddenSize, depth, outputSize).double()
   batcher = Batcher(dataPaths, sequenceLength, minibatchSize)
-  trainModel(model, batcher, maxEpochs=7, learningRate=lr, learningRateDecay=lrd, printLoss=False)
-  df = testModel(model, dataPaths)
+  trainModel(model, batcher, maxEpochs=5, learningRate=lr, learningRateDecay=lrd, printLoss=False)
+  validationDataPaths, _, _ = loadDataPaths("Processed data/validation_set.txt")
+  df = testModel(model, validationDataPaths)
   
   return 1. - getAccuracy(df, threshold)
 

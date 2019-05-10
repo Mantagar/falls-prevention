@@ -16,7 +16,7 @@ path = sys.argv[1]
 
 data = read_csv(path)
 
-threshold = 0.3
+threshold = 0.0
 density = 0.01
 
 x = []
@@ -36,7 +36,7 @@ while threshold<1:
   FP = 0;
   TN = 0;
   FN = 0;
-  time_diff_count = 0
+  time_diff_count = 0.00000001
   time_diff_sum = 0
   for c in data:
     real_negative = 'Nosynkope' in c
@@ -104,6 +104,12 @@ print()
 if len(sys.argv)<=2:
   pp.plot(x, y)
   pp.gca().legend(("Accuracy","Sensitivity"))
+  pp.xlabel('Threshold')
+  pp.show()
+  
+  pp.plot(x, y2)
+  pp.title("Reaction time is the time difference\nbetween model's and manual presyncope detection")
+  pp.ylabel("Reaction time [s]")
   pp.xlabel('Threshold')
   pp.show()
   
