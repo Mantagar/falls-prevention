@@ -2,4 +2,6 @@
 *.xls
 *.zip
 *.out
+__pycache__/
+*.pyc
 Mat/
