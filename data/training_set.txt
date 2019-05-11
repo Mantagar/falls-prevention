@@ -1,154 +1,154 @@
-./Processed data/Nosynkope/K087.csv
-./Processed data/Synkope/K187.csv
-./Processed data/Nosynkope/K274.csv
-./Processed data/Nosynkope/K403.csv
-./Processed data/Nosynkope/K297.csv
-./Processed data/Nosynkope/K390.csv
-./Processed data/Nosynkope/K034.csv
-./Processed data/Synkope/K665.csv
-./Processed data/Synkope/K122.csv
-./Processed data/Nosynkope/K565.csv
-./Processed data/Synkope/K304.csv
-./Processed data/Nosynkope/K427.csv
-./Processed data/Synkope/K384.csv
-./Processed data/Synkope/K580.csv
-./Processed data/Nosynkope/K438.csv
-./Processed data/Nosynkope/K548.csv
-./Processed data/Nosynkope/K099.csv
-./Processed data/Nosynkope/K148.csv
-./Processed data/Synkope/K428.csv
-./Processed data/Synkope/K335.csv
-./Processed data/Synkope/K575.csv
-./Processed data/Synkope/K385.csv
-./Processed data/Nosynkope/K482.csv
-./Processed data/Synkope/K447.csv
-./Processed data/Nosynkope/K397.csv
-./Processed data/Synkope/K505.csv
-./Processed data/Synkope/K660.csv
-./Processed data/Synkope/K649.csv
-./Processed data/Nosynkope/K052.csv
-./Processed data/Nosynkope/K544.csv
-./Processed data/Nosynkope/K270.csv
-./Processed data/Synkope/K503.csv
-./Processed data/Synkope/K240.csv
-./Processed data/Synkope/K639.csv
-./Processed data/Synkope/K159.csv
-./Processed data/Nosynkope/K220.csv
-./Processed data/Synkope/K661.csv
-./Processed data/Nosynkope/K129.csv
-./Processed data/Nosynkope/K642.csv
-./Processed data/Synkope/K609.csv
-./Processed data/Nosynkope/K655.csv
-./Processed data/Nosynkope/K310.csv
-./Processed data/Nosynkope/K364.csv
-./Processed data/Nosynkope/K272.csv
-./Processed data/Synkope/K104.csv
-./Processed data/Nosynkope/K404.csv
-./Processed data/Synkope/K059.csv
-./Processed data/Synkope/K044.csv
-./Processed data/Synkope/K579.csv
-./Processed data/Synkope/K578.csv
-./Processed data/Synkope/K096.csv
-./Processed data/Synkope/K626.csv
-./Processed data/Synkope/K418.csv
-./Processed data/Synkope/K131.csv
-./Processed data/Synkope/K105.csv
-./Processed data/Synkope/K464.csv
-./Processed data/Nosynkope/K045.csv
-./Processed data/Nosynkope/K005.csv
-./Processed data/Nosynkope/K646.csv
-./Processed data/Synkope/K186.csv
-./Processed data/Synkope/K284.csv
-./Processed data/Nosynkope/K556.csv
-./Processed data/Synkope/K210.csv
-./Processed data/Nosynkope/K511.csv
-./Processed data/Synkope/K043.csv
-./Processed data/Nosynkope/K678.csv
-./Processed data/Nosynkope/K100.csv
-./Processed data/Nosynkope/K551.csv
-./Processed data/Nosynkope/K037.csv
-./Processed data/Synkope/K348.csv
-./Processed data/Synkope/K280.csv
-./Processed data/Synkope/K478.csv
-./Processed data/Nosynkope/K526.csv
-./Processed data/Nosynkope/K381.csv
-./Processed data/Synkope/K671.csv
-./Processed data/Nosynkope/K568.csv
-./Processed data/Nosynkope/K411.csv
-./Processed data/Synkope/K405.csv
-./Processed data/Synkope/K644.csv
-./Processed data/Synkope/K652.csv
-./Processed data/Synkope/K111.csv
-./Processed data/Nosynkope/K545.csv
-./Processed data/Synkope/K587.csv
-./Processed data/Synkope/K316.csv
-./Processed data/Synkope/K093.csv
-./Processed data/Synkope/K322.csv
-./Processed data/Nosynkope/K336.csv
-./Processed data/Synkope/K585.csv
-./Processed data/Synkope/K516.csv
-./Processed data/Synkope/K378.csv
-./Processed data/Nosynkope/K426.csv
-./Processed data/Synkope/K268.csv
-./Processed data/Synkope/K332.csv
-./Processed data/Nosynkope/K412.csv
-./Processed data/Nosynkope/K382.csv
-./Processed data/Synkope/K459.csv
-./Processed data/Nosynkope/K246.csv
-./Processed data/Nosynkope/K479.csv
-./Processed data/Nosynkope/K440.csv
-./Processed data/Nosynkope/K252.csv
-./Processed data/Nosynkope/K497.csv
-./Processed data/Synkope/K607.csv
-./Processed data/Synkope/K323.csv
-./Processed data/Nosynkope/K506.csv
-./Processed data/Synkope/K321.csv
-./Processed data/Nosynkope/K490.csv
-./Processed data/Synkope/K192.csv
-./Processed data/Nosynkope/K330.csv
-./Processed data/Synkope/K108.csv
-./Processed data/Nosynkope/K342.csv
-./Processed data/Synkope/K028.csv
-./Processed data/Nosynkope/K181.csv
-./Processed data/Synkope/K444.csv
-./Processed data/Synkope/K014.csv
-./Processed data/Nosynkope/K287.csv
-./Processed data/Nosynkope/K070.csv
-./Processed data/Nosynkope/K653.csv
-./Processed data/Nosynkope/K453.csv
-./Processed data/Synkope/K151.csv
-./Processed data/Synkope/K101.csv
-./Processed data/Nosynkope/K149.csv
-./Processed data/Synkope/K446.csv
-./Processed data/Nosynkope/K443.csv
-./Processed data/Nosynkope/K074.csv
-./Processed data/Synkope/K498.csv
-./Processed data/Synkope/K352.csv
-./Processed data/Nosynkope/K344.csv
-./Processed data/Nosynkope/K531.csv
-./Processed data/Synkope/K621.csv
-./Processed data/Nosynkope/K162.csv
-./Processed data/Nosynkope/K017.csv
-./Processed data/Synkope/K021.csv
-./Processed data/Synkope/K500.csv
-./Processed data/Synkope/K308.csv
-./Processed data/Nosynkope/K265.csv
-./Processed data/Nosynkope/K439.csv
-./Processed data/Nosynkope/K008.csv
-./Processed data/Synkope/K485.csv
-./Processed data/Nosynkope/K262.csv
-./Processed data/Nosynkope/K343.csv
-./Processed data/Nosynkope/K071.csv
-./Processed data/Synkope/K365.csv
-./Processed data/Nosynkope/K406.csv
-./Processed data/Nosynkope/K413.csv
-./Processed data/Nosynkope/K431.csv
-./Processed data/Synkope/K451.csv
-./Processed data/Synkope/K530.csv
-./Processed data/Nosynkope/K376.csv
-./Processed data/Synkope/K023.csv
-./Processed data/Nosynkope/K553.csv
-./Processed data/Synkope/K146.csv
-./Processed data/Synkope/K581.csv
-./Processed data/Nosynkope/K349.csv
-./Processed data/Nosynkope/K266.csv
+./data/Nosynkope/K087.csv
+./data/Synkope/K187.csv
+./data/Nosynkope/K274.csv
+./data/Nosynkope/K403.csv
+./data/Nosynkope/K297.csv
+./data/Nosynkope/K390.csv
+./data/Nosynkope/K034.csv
+./data/Synkope/K665.csv
+./data/Synkope/K122.csv
+./data/Nosynkope/K565.csv
+./data/Synkope/K304.csv
+./data/Nosynkope/K427.csv
+./data/Synkope/K384.csv
+./data/Synkope/K580.csv
+./data/Nosynkope/K438.csv
+./data/Nosynkope/K548.csv
+./data/Nosynkope/K099.csv
+./data/Nosynkope/K148.csv
+./data/Synkope/K428.csv
+./data/Synkope/K335.csv
+./data/Synkope/K575.csv
+./data/Synkope/K385.csv
+./data/Nosynkope/K482.csv
+./data/Synkope/K447.csv
+./data/Nosynkope/K397.csv
+./data/Synkope/K505.csv
+./data/Synkope/K660.csv
+./data/Synkope/K649.csv
+./data/Nosynkope/K052.csv
+./data/Nosynkope/K544.csv
+./data/Nosynkope/K270.csv
+./data/Synkope/K503.csv
+./data/Synkope/K240.csv
+./data/Synkope/K639.csv
+./data/Synkope/K159.csv
+./data/Nosynkope/K220.csv
+./data/Synkope/K661.csv
+./data/Nosynkope/K129.csv
+./data/Nosynkope/K642.csv
+./data/Synkope/K609.csv
+./data/Nosynkope/K655.csv
+./data/Nosynkope/K310.csv
+./data/Nosynkope/K364.csv
+./data/Nosynkope/K272.csv
+./data/Synkope/K104.csv
+./data/Nosynkope/K404.csv
+./data/Synkope/K059.csv
+./data/Synkope/K044.csv
+./data/Synkope/K579.csv
+./data/Synkope/K578.csv
+./data/Synkope/K096.csv
+./data/Synkope/K626.csv
+./data/Synkope/K418.csv
+./data/Synkope/K131.csv
+./data/Synkope/K105.csv
+./data/Synkope/K464.csv
+./data/Nosynkope/K045.csv
+./data/Nosynkope/K005.csv
+./data/Nosynkope/K646.csv
+./data/Synkope/K186.csv
+./data/Synkope/K284.csv
+./data/Nosynkope/K556.csv
+./data/Synkope/K210.csv
+./data/Nosynkope/K511.csv
+./data/Synkope/K043.csv
+./data/Nosynkope/K678.csv
+./data/Nosynkope/K100.csv
+./data/Nosynkope/K551.csv
+./data/Nosynkope/K037.csv
+./data/Synkope/K348.csv
+./data/Synkope/K280.csv
+./data/Synkope/K478.csv
+./data/Nosynkope/K526.csv
+./data/Nosynkope/K381.csv
+./data/Synkope/K671.csv
+./data/Nosynkope/K568.csv
+./data/Nosynkope/K411.csv
+./data/Synkope/K405.csv
+./data/Synkope/K644.csv
+./data/Synkope/K652.csv
+./data/Synkope/K111.csv
+./data/Nosynkope/K545.csv
+./data/Synkope/K587.csv
+./data/Synkope/K316.csv
+./data/Synkope/K093.csv
+./data/Synkope/K322.csv
+./data/Nosynkope/K336.csv
+./data/Synkope/K585.csv
+./data/Synkope/K516.csv
+./data/Synkope/K378.csv
+./data/Nosynkope/K426.csv
+./data/Synkope/K268.csv
+./data/Synkope/K332.csv
+./data/Nosynkope/K412.csv
+./data/Nosynkope/K382.csv
+./data/Synkope/K459.csv
+./data/Nosynkope/K246.csv
+./data/Nosynkope/K479.csv
+./data/Nosynkope/K440.csv
+./data/Nosynkope/K252.csv
+./data/Nosynkope/K497.csv
+./data/Synkope/K607.csv
+./data/Synkope/K323.csv
+./data/Nosynkope/K506.csv
+./data/Synkope/K321.csv
+./data/Nosynkope/K490.csv
+./data/Synkope/K192.csv
+./data/Nosynkope/K330.csv
+./data/Synkope/K108.csv
+./data/Nosynkope/K342.csv
+./data/Synkope/K028.csv
+./data/Nosynkope/K181.csv
+./data/Synkope/K444.csv
+./data/Synkope/K014.csv
+./data/Nosynkope/K287.csv
+./data/Nosynkope/K070.csv
+./data/Nosynkope/K653.csv
+./data/Nosynkope/K453.csv
+./data/Synkope/K151.csv
+./data/Synkope/K101.csv
+./data/Nosynkope/K149.csv
+./data/Synkope/K446.csv
+./data/Nosynkope/K443.csv
+./data/Nosynkope/K074.csv
+./data/Synkope/K498.csv
+./data/Synkope/K352.csv
+./data/Nosynkope/K344.csv
+./data/Nosynkope/K531.csv
+./data/Synkope/K621.csv
+./data/Nosynkope/K162.csv
+./data/Nosynkope/K017.csv
+./data/Synkope/K021.csv
+./data/Synkope/K500.csv
+./data/Synkope/K308.csv
+./data/Nosynkope/K265.csv
+./data/Nosynkope/K439.csv
+./data/Nosynkope/K008.csv
+./data/Synkope/K485.csv
+./data/Nosynkope/K262.csv
+./data/Nosynkope/K343.csv
+./data/Nosynkope/K071.csv
+./data/Synkope/K365.csv
+./data/Nosynkope/K406.csv
+./data/Nosynkope/K413.csv
+./data/Nosynkope/K431.csv
+./data/Synkope/K451.csv
+./data/Synkope/K530.csv
+./data/Nosynkope/K376.csv
+./data/Synkope/K023.csv
+./data/Nosynkope/K553.csv
+./data/Synkope/K146.csv
+./data/Synkope/K581.csv
+./data/Nosynkope/K349.csv
+./data/Nosynkope/K266.csv

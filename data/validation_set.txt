@@ -1,18 +1,18 @@
-./Processed data/Nosynkope/K110.csv
-./Processed data/Synkope/K158.csv
-./Processed data/Synkope/K460.csv
-./Processed data/Synkope/K606.csv
-./Processed data/Nosynkope/K320.csv
-./Processed data/Synkope/K001.csv
-./Processed data/Synkope/K658.csv
-./Processed data/Nosynkope/K559.csv
-./Processed data/Nosynkope/K092.csv
-./Processed data/Nosynkope/K538.csv
-./Processed data/Nosynkope/K675.csv
-./Processed data/Nosynkope/K419.csv
-./Processed data/Nosynkope/K295.csv
-./Processed data/Synkope/K393.csv
-./Processed data/Synkope/K409.csv
-./Processed data/Nosynkope/K501.csv
-./Processed data/Synkope/K375.csv
-./Processed data/Synkope/K286.csv
+./data/Nosynkope/K110.csv
+./data/Synkope/K158.csv
+./data/Synkope/K460.csv
+./data/Synkope/K606.csv
+./data/Nosynkope/K320.csv
+./data/Synkope/K001.csv
+./data/Synkope/K658.csv
+./data/Nosynkope/K559.csv
+./data/Nosynkope/K092.csv
+./data/Nosynkope/K538.csv
+./data/Nosynkope/K675.csv
+./data/Nosynkope/K419.csv
+./data/Nosynkope/K295.csv
+./data/Synkope/K393.csv
+./data/Synkope/K409.csv
+./data/Nosynkope/K501.csv
+./data/Synkope/K375.csv
+./data/Synkope/K286.csv
