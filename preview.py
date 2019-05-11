@@ -3,9 +3,9 @@ import os
 import matplotlib.pyplot as pp
 from pandas import read_csv
 
-loc_s = "./Processed data/Synkope/"
+loc_s = "./data/Synkope/"
 flist_s = os.listdir(loc_s)
-loc_n = "./Processed data/Nosynkope/"
+loc_n = "./data/Nosynkope/"
 flist_n = os.listdir(loc_n)
 flist = flist_s + flist_n
 for i,f in enumerate(flist):

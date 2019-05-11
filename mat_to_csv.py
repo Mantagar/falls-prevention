@@ -98,5 +98,5 @@ def convertAll(input_folder, output_folder, savePlots):
   print("HR("+str(minHR)+";"+str(maxHR)+")")
   print("mBP("+str(minBP)+";"+str(maxBP)+")")
 
-convertAll('./Mat/Synkope/','./Processed data/Synkope/', False)
-convertAll('./Mat/No finding/','./Processed data/Nosynkope/', False)
+convertAll('./Mat/Synkope/','./data/Synkope/', False)
+convertAll('./Mat/No finding/','./data/Nosynkope/', False)

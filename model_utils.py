@@ -45,18 +45,18 @@ class Batcher:
     return batch_x, batch_y
 
 class RNN(torch.nn.Module):
-  def __init__(self, input_size, hidden_size, stacks, output_size):
+  def __init__(self, input_size, hidden_size, stacks, output_size, bidirectional=False):
     super(RNN, self).__init__()
     self.input_size = input_size
     self.hidden_size = hidden_size
     self.stacks = stacks
     self.output_size = output_size
-    #VANILLA
-    self.rnn = torch.nn.GRU(input_size=input_size, hidden_size=hidden_size, num_layers=stacks)
-    self.lastLayer = torch.nn.Linear(hidden_size, output_size)
-    #BIDIRECTIONAL
-    #self.rnn = torch.nn.GRU(input_size=input_size, hidden_size=hidden_size, num_layers=stacks, bidirectional=True)
-    #self.lastLayer = torch.nn.Linear(2*hidden_size, output_size)
+    self.bidirectional = bidirectional
+    self.rnn = torch.nn.GRU(input_size=input_size, hidden_size=hidden_size, num_layers=stacks, bidirectional=bidirectional)
+    if bidirectional:
+      self.lastLayer = torch.nn.Linear(2*hidden_size, output_size)
+    else:
+      self.lastLayer = torch.nn.Linear(hidden_size, output_size)
   
   def forward(self, batch, hidden_state):
     out, next_hidden_state = self.rnn(batch, hidden_state)

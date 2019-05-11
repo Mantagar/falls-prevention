@@ -1,11 +1,5 @@
 *.mat
-
-*.csv
-
 *.xls
-
 *.zip
-
-*.tuner
 *.out
-checkpoints/*
+Mat/

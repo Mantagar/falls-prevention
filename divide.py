@@ -15,7 +15,7 @@ tra_factor /= sum
 tes_factor /= sum
 val_factor /= sum
 
-loc = "./Processed data/Synkope/"
+loc = "./data/Synkope/"
 slist = os.listdir(loc)
 slist = [ loc+i for i in slist ]
 random.shuffle(slist)
@@ -26,7 +26,7 @@ val_data = slist[0:first_idx]
 tes_data = slist[first_idx:second_idx]
 tra_data = slist[second_idx:]
 
-loc = "./Processed data/Nosynkope/"
+loc = "./data/Nosynkope/"
 nlist = os.listdir(loc)
 nlist = [ loc+i for i in nlist ]
 random.shuffle(nlist)
@@ -44,9 +44,9 @@ random.shuffle(tes_data)
 random.shuffle(tra_data)
 
 
-tra_path = 'Processed data/training_set.txt'
-tes_path = 'Processed data/test_set.txt'
-val_path = 'Processed data/validation_set.txt'
+tra_path = 'data/training_set.txt'
+tes_path = 'data/test_set.txt'
+val_path = 'data/validation_set.txt'
 print("Training:\t"+str(len(tra_data))+" - saved to '"+tra_path+"'")
 saveListAsFile(tra_data, tra_path)
 print("Test:\t\t"+str(len(tes_data))+" - saved to '"+tes_path+"'")
