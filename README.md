@@ -13,9 +13,9 @@ pytorch >= 0.4.1
 # Training
 Model may be trained on training data set. This script requires 2 arguments:
 
-hiddenSize - number of neurons in hidden layers,
+*	*hiddenSize* - number of neurons in hidden layers,
 
-depth - number of stacked RNNs on top of each other.
+*	*depth* - number of stacked RNNs on top of each other.
 
 Every epoch snapshots are saved to **checkpoints/** and models are evaluated, creating coresponding files in **csv/** directory. This script periodically prints loss.
 ```
@@ -27,7 +27,7 @@ python retrainer.py modelName
 ```
 
 # Inspecting models
-Model inspector prints basic information concerning a particular model.
+Model inspector prints basic information concerning a particular model. Model's name is the filename in **checkpoints/** without *.model* extension.
 ```
 python model_inspector.py modelName
 ```
@@ -39,7 +39,7 @@ python tester.py modelName
 ```
 
 # Tuning
-Best hyperparameters can be found by running the tuner, which after trying 50 points saves its state in **checkpoints/** with extension ".tuner".
+Best hyperparameters can be found by running the tuner, which after trying 50 points saves its state in **checkpoints/** with extension *.tuner*.
 ```
 python tuner.py
 ```
