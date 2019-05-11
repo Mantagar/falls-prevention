@@ -1,6 +1,6 @@
 ﻿# Falls prevention with RNNs
 
-This repository contains scripts responsible for training, tuning and testing recurrent neural networks capable of detecting presynkope state of patients based on their medical, temporal data (heart rate, mean blood pressure).
+This repository contains scripts responsible for training, tuning and testing recurrent neural networks capable of detecting presynkope state of patients based on their medical temporal data (heart rate, mean blood pressure).
 
 # Requirements
 ```
@@ -12,9 +12,12 @@ pytorch >= 0.4.1
 
 # Training
 Model may be trained on training data set. This script requires 2 arguments:
+
 hiddenSize - number of neurons in hidden layers,
+
 depth - number of stacked RNNs on top of each other.
-Every epoch snapshots are saved to "checkpoints/" and models are evaluated, creating coresponding files in "csv/" directory. This script periodically prints loss.
+
+Every epoch snapshots are saved to **checkpoints/** and models are evaluated, creating coresponding files in **csv/** directory. This script periodically prints loss.
 ```
 python trainer.py hiddenSize depth
 ``` 
@@ -30,13 +33,13 @@ python model_inspector.py modelName
 ```
 
 # Testing
-Tester evaluates models and creates coresponding files in "csv/".
+Tester evaluates models and creates coresponding files in **csv/**.
 ```
 python tester.py modelName
 ```
 
 # Tuning
-Best hyperparameters can be found by running the tuner, which after trying 50 points saves its state in "checkpoints/" with extension ".tuner".
+Best hyperparameters can be found by running the tuner, which after trying 50 points saves its state in **checkpoints/** with extension ".tuner".
 ```
 python tuner.py
 ```
@@ -70,5 +73,8 @@ python conf_matrix.py pathToCsv threshold
 
 # Misc
 combine.py - joins single column data
+
 plot_loss.py - prints loss (in case it was forwared to a file from trainer.py)
+
 mat_to_csv.py - if "Mat/" directory exists then csv data may be generated from matlab files
+
