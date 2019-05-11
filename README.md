@@ -39,7 +39,7 @@ python tester.py modelName
 ```
 
 # Tuning
-Best hyperparameters can be found by running the tuner, which after trying 50 points saves its state in **checkpoints/** with extension *.tuner*.
+Best hyperparameters can be found by running the tuner. After trying 50 points it saves its state in **checkpoints/** with extension *.tuner*.
 ```
 python tuner.py
 ```
