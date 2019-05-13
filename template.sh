@@ -1,7 +1,7 @@
 #!/bin/bash -l
 #SBATCH --ntasks=1
 #SBATCH --time=72:00:00
-#SBATCH -A fallp
+#SBATCH -A fallp2
 #SBATCH -p plgrid
 #SBATCH --output="fresh.out"
 

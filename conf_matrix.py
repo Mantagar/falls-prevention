@@ -21,7 +21,6 @@ density = 0.01
 
 x = []
 y = []
-x2 = []
 y2 = []
 if len(sys.argv)>2:
   threshold = float(sys.argv[2])
@@ -80,7 +79,6 @@ while threshold<1:
   if density==1:
     print("AVG\t\t"+str(time_diff_sum/time_diff_count))
   else:
-    x2.append(accuracy)
     y2.append(time_diff_sum/time_diff_count)
  
   x.append(threshold)
@@ -111,10 +109,4 @@ if len(sys.argv)<=2:
   pp.title("Reaction time is the time difference\nbetween model's and manual presyncope detection")
   pp.ylabel("Reaction time [s]")
   pp.xlabel('Threshold')
-  pp.show()
-  
-  pp.plot(x2, y2)
-  pp.title("Reaction time is the time difference\nbetween model's and manual presyncope detection")
-  pp.ylabel("Reaction time [s]")
-  pp.xlabel('Accuracy')
   pp.show()
