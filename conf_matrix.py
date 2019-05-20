@@ -30,8 +30,7 @@ if len(sys.argv)>2:
 timestamps = pd.read_csv("Synkope_timestamps.csv")
 best_score = 0
 best_threshold = 0
-for loopVal in tqdm(range(int(density*100),int(100-density*100), int(density*100))):
-  threshold = loopVal/100
+for threshold in tqdm(numpy.arange(density,1-density, density)):
   if len(sys.argv)>2:
     threshold = float(sys.argv[2])
   TP = 0;
@@ -51,7 +50,7 @@ for loopVal in tqdm(range(int(density*100),int(100-density*100), int(density*100
           time_data = combineMatArrays(matfile['BeatToBeat']['Time'])
           time_diff = time_data[iter + 800] - timestamps[timestamps['data_id'] == data_id]['seconds']
           try:
-            if density==1:\
+            if len(sys.argv)>2:
               print(str(data_id)+"\t\t"+str(time_diff.item()))
             time_diff_sum += time_diff.item()
             time_diff_count += 1
@@ -80,7 +79,7 @@ for loopVal in tqdm(range(int(density*100),int(100-density*100), int(density*100
   NPV = FP / (FP + FN + e)
   f1 = 2*sensitivity*PPV/(sensitivity+PPV+e)
   
-  if density==1:
+  if len(sys.argv)>2:
     print("AVG\t\t"+str(time_diff_sum/time_diff_count))
   else:
     y2.append(time_diff_sum/time_diff_count)
