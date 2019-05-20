@@ -7,6 +7,7 @@ This repository contains scripts responsible for training, tuning and testing re
 python >= 3.6.2
 numpy >= 1.15.0
 pandas >= 0.23.4
+scipy >= 1.1.0
 pytorch >= 0.4.1
 ```
 
@@ -46,6 +47,10 @@ python tuner.py
 In case of having at least 1 tuner snapshot the process can be resumed.
 ```
 python tuner.py tunerName1 tunerName2 ...
+```
+In order to inspect an existing tuner snapshot:
+```
+python tuner_inspector.py tunerName
 ```
 
 # Data visualization

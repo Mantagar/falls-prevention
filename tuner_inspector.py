@@ -15,7 +15,7 @@ class CheckpointSaver(object):
   def __call__(self, res):
      dump(res, 'checkpoints/'+self.name+'.tuner', store_objective=False)
 
-res = load(sys.argv[1])
+res = load('checkpoints/'+sys.argv[1]+'.tuner')
 
 print(res.x)
 print(res.fun)

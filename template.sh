@@ -5,10 +5,10 @@
 #SBATCH -p plgrid
 #SBATCH --output="fresh.out"
 
-module add plgrid/tools/python/3.6.5
 module add test/torch
 module add plgrid/libs/python-scipy/1.0.1-python-3.6
+module add plgrid/tools/python/3.6.5
 
 cd $SLURM_SUBMIT_DIR
 
-srun python3.6 ./train.py
+srun python3.6 ./tuner.py

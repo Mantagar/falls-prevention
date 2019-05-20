@@ -5,6 +5,7 @@ import scipy.io as sio
 from pandas import read_csv
 import pandas as pd
 import sys
+from tqdm import tqdm
 
 def combineMatArrays(split):
   combined = None
@@ -16,21 +17,23 @@ path = sys.argv[1]
 
 data = read_csv(path)
 
-threshold = 0.0
 density = 0.01
-
 x = []
 y = []
 y2 = []
+x3 = []
+y3 =[]
 if len(sys.argv)>2:
   threshold = float(sys.argv[2])
-  density = 1#only one run of the loop
   print("data_id\t\ttime_diff")
   
 timestamps = pd.read_csv("Synkope_timestamps.csv")
-best_accuracy = 0
+best_score = 0
 best_threshold = 0
-while threshold<1:
+for loopVal in tqdm(range(int(density*100),int(100-density*100), int(density*100))):
+  threshold = loopVal/100
+  if len(sys.argv)>2:
+    threshold = float(sys.argv[2])
   TP = 0;
   FP = 0;
   TN = 0;
@@ -75,16 +78,19 @@ while threshold<1:
   specificity = TN / (TN + FP + e)
   PPV = TP / (TP + FP + e)
   NPV = FP / (FP + FN + e)
+  f1 = 2*sensitivity*PPV/(sensitivity+PPV+e)
   
   if density==1:
     print("AVG\t\t"+str(time_diff_sum/time_diff_count))
   else:
     y2.append(time_diff_sum/time_diff_count)
+    x3.append(1-specificity)
+    y3.append(sensitivity)
  
   x.append(threshold)
-  y.append([accuracy, sensitivity])#, specificity, PPV, NPV])
-  if accuracy > best_accuracy:
-    best_accuracy = accuracy
+  y.append([accuracy, f1])
+  if f1 > best_score:
+    best_score = f1
     best_threshold = threshold
     log = "\n"
     log += "TP = "+str(TP)+"\tFP = "+str(FP)+"\nFN = "+str(FN)+"\tTN = "+str(TN)+"\n"
@@ -93,15 +99,20 @@ while threshold<1:
     log += "specificity = "+str(specificity)+"\n"
     log += "PPV = "+str(PPV)+"\n"
     log += "NPV = "+str(NPV)+"\n"
-  threshold += density
+    log += "\n"
+    log += "accuracy = "+str(accuracy)+"\n"
+    log += "F1 = "+str(f1)+"\n"
+    
+  if len(sys.argv)>2:
+    break 
 
 print(log)
 print("Best threshold: "+str(best_threshold))
-print("Best accuracy: "+str(best_accuracy))
 print()
 if len(sys.argv)<=2:
+  pp.gca().set_autoscale_on(False)
   pp.plot(x, y)
-  pp.gca().legend(("Accuracy","Sensitivity"))
+  pp.gca().legend(("Accuracy", "F1"))
   pp.xlabel('Threshold')
   pp.show()
   
@@ -109,4 +120,11 @@ if len(sys.argv)<=2:
   pp.title("Reaction time is the time difference\nbetween model's and manual presyncope detection")
   pp.ylabel("Reaction time [s]")
   pp.xlabel('Threshold')
+  pp.show()
+  
+  pp.gca().set_autoscale_on(False)
+  pp.scatter(x3, y3)
+  pp.title("AUC")
+  pp.ylabel("True positive rate")
+  pp.xlabel('False positive rate')
   pp.show()

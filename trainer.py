@@ -4,7 +4,7 @@ import time
 
 hiddenSize=int(sys.argv[1])
 depth=int(sys.argv[2])
-bidirectional=False
+bidirectional=(sys.arg[3]==1)
 sequenceLength=300
 minibatchSize=16
 lr=1
