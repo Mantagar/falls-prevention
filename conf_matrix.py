@@ -17,7 +17,7 @@ path = sys.argv[1]
 
 data = read_csv(path)
 
-density = 0.01
+density = 0.005
 x = []
 y = []
 y2 = []
@@ -37,8 +37,7 @@ for threshold in tqdm(numpy.arange(density,1-density, density)):
   FP = 0;
   TN = 0;
   FN = 0;
-  time_diff_count = 0.00000001
-  time_diff_sum = 0
+  time_diff_list = []
   for c in data:
     real_negative = 'Nosynkope' in c
     max_value = data[c].max()
@@ -52,8 +51,7 @@ for threshold in tqdm(numpy.arange(density,1-density, density)):
           try:
             if len(sys.argv)>2:
               print(str(data_id)+"\t\t"+str(time_diff.item()))
-            time_diff_sum += time_diff.item()
-            time_diff_count += 1
+            time_diff_list.append(time_diff.item())
           except:
             pass
           break
@@ -79,10 +77,13 @@ for threshold in tqdm(numpy.arange(density,1-density, density)):
   NPV = FP / (FP + FN + e)
   f1 = 2*sensitivity*PPV/(sensitivity+PPV+e)
   
+  avg_diff = numpy.mean(time_diff_list)
+  med_diff = numpy.median(time_diff_list)
   if len(sys.argv)>2:
-    print("AVG\t\t"+str(time_diff_sum/time_diff_count))
+    print("AVERAGE\t\t"+str(avg_diff))
+    print("MEDIAN\t\t"+str(med_diff))
   else:
-    y2.append(time_diff_sum/time_diff_count)
+    y2.append([avg_diff, med_diff])
     x3.append(1-specificity)
     y3.append(sensitivity)
  
@@ -118,6 +119,7 @@ if len(sys.argv)<=2:
   pp.plot(x, y2)
   pp.title("Reaction time is the time difference\nbetween model's and manual presyncope detection")
   pp.ylabel("Reaction time [s]")
+  pp.gca().legend(("Average", "Median"))
   pp.xlabel('Threshold')
   pp.show()
   
