@@ -89,7 +89,7 @@ for threshold in tqdm(numpy.arange(density,1-density, density)):
     y3.append(sensitivity)
  
   x.append(threshold)
-  y.append([accuracy, f1])
+  y.append([accuracy, f1, sensitivity])
   if f1 > best_score:
     best_score = f1
     best_threshold = threshold
@@ -113,7 +113,7 @@ print()
 if len(sys.argv)<=2:
   pp.gca().set_autoscale_on(False)
   pp.plot(x, y)
-  pp.gca().legend(("Accuracy", "F1"))
+  pp.gca().legend(("Accuracy", "F1", "Sensitivity"))
   pp.xlabel('Threshold')
   pp.show()
   
