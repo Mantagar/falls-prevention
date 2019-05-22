@@ -11,16 +11,28 @@ step = int(sys.argv[2])
 data = read_csv(path)
 
 avgdf = pd.DataFrame()
-for col in data:
-  avgdf[col] = data[col].rolling(step, center=True).max().fillna(method='ffill').fillna(method='bfill')
-
+id_max = []
+val_max = []
+if step==0:
+  #Show only maximum obtained value
+  for col in data:
+    id_max.append(data[col].idxmax())
+    val_max.append(data[col][id_max[-1]])
+    avgdf[col] = data[col]
+else:
+  for col in data:
+    avgdf[col] = data[col].rolling(step).mean().shift(-step+1)
+    
 colors = []
 for col in avgdf:
   if 'Nosynkope' in col:
     colors.append('red')
   elif 'Synkope' in col:
     colors.append('green')
-avgdf.plot(kind='line', color=colors, legend=None)
+if step==0:
+  pp.scatter(x=id_max, y=val_max, color=colors)
+else:
+  avgdf.plot(kind='line', color=colors, legend=None)
 pp.xlabel('Steps')
 pp.ylabel('Classification (average of '+str(step)+' steps)')
 #pp.legend(title='Series')

@@ -77,7 +77,7 @@ python conf_matrix.py pathToCsv threshold
 ```
 
 # Misc
-combine.py - joins single column data
+dataset_inspector.py - prints dataset information
 
 plot_loss.py - prints loss (in case it was forwared to a file from trainer.py)
 

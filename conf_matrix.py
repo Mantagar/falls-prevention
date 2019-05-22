@@ -30,6 +30,7 @@ if len(sys.argv)>2:
 timestamps = pd.read_csv("Synkope_timestamps.csv")
 best_score = 0
 best_threshold = 0
+max_values = data.max()
 for threshold in tqdm(numpy.arange(density,1-density, density)):
   if len(sys.argv)>2:
     threshold = float(sys.argv[2])
@@ -40,7 +41,7 @@ for threshold in tqdm(numpy.arange(density,1-density, density)):
   time_diff_list = []
   for c in data:
     real_negative = 'Nosynkope' in c
-    max_value = data[c].max()
+    max_value = max_values[c]
     if not real_negative:
       for iter in range(len(data[c])):
         if data[c][iter]>=threshold:
@@ -125,7 +126,7 @@ if len(sys.argv)<=2:
   
   pp.gca().set_autoscale_on(False)
   pp.scatter(x3, y3)
-  pp.title("AUC")
+  pp.title("ROC")
   pp.ylabel("True positive rate")
   pp.xlabel('False positive rate')
   pp.show()

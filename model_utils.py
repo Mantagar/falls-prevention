@@ -2,6 +2,7 @@ import torch
 import pandas as pd
 import random
 import numpy
+from tqdm import tqdm
 
 
 class Batcher:
@@ -66,7 +67,7 @@ class RNN(torch.nn.Module):
 def testModel(model, dataPaths):
   softmax = torch.nn.Softmax(dim=2)
   df = pd.DataFrame()
-  for path in dataPaths:
+  for path in tqdm(dataPaths):
     flow = []
     hidden_state = None
     values = pd.read_csv(path).values
