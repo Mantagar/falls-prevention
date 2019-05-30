@@ -5,10 +5,10 @@ import sys
 import time
 
 def errorRate(x):
-  [hiddenSize, depth, sequenceLength] = x
+  [hiddenSize, depth] = x
   hiddenSize = int(hiddenSize)
   depth = int(depth)
-  sequenceLength = int(sequenceLength)
+  sequenceLength = 300
   minibatchSize = 16
   lr = 1.0
   lrd = 0.9
@@ -17,7 +17,7 @@ def errorRate(x):
   dataPaths, inputSize, outputSize = loadDataPaths("data/training_set.txt")
   model = RNN(inputSize, hiddenSize, depth, outputSize).double()
   batcher = Batcher(dataPaths, sequenceLength, minibatchSize)
-  trainModel(model, batcher, maxEpochs=5, learningRate=lr, learningRateDecay=lrd, printLoss=False)
+  trainModel(model, batcher, maxEpochs=3, learningRate=lr, learningRateDecay=lrd, printLoss=False)
   validationDataPaths, _, _ = loadDataPaths("data/validation_set.txt")
   df = testModel(model, validationDataPaths)
   
@@ -43,7 +43,7 @@ if argc>1:
 else:
   args = {'n_random_starts': 10}
   
-res = gp_minimize(errorRate, [(50,200), (1,2), (50,300)], n_calls=50, callback=[CheckpointSaver(name)], **args)
+res = gp_minimize(errorRate, [(100,200), (1,2)], n_calls=50, callback=[CheckpointSaver(name)], **args)
 
 print(res.x)
 print(res.fun)

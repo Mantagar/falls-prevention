@@ -4,11 +4,11 @@ import time
 
 hiddenSize=int(sys.argv[1])
 depth=int(sys.argv[2])
-bidirectional=(sys.arg[3]==1)
+bidirectional=(int(sys.argv[3])==1)
 sequenceLength=300
 minibatchSize=16
 lr=1
-lrd=0.9
+lrd=0.97
 
 dataPaths, inputSize, outputSize = loadDataPaths("data/training_set.txt")
 
@@ -16,7 +16,7 @@ testDataPaths, _, _ = loadDataPaths("data/test_set.txt")
 testDataPaths2, _, _ = loadDataPaths("data/validation_set.txt")
 testDataPaths += testDataPaths2
 
-modelName = str(int(time.time()))
+modelName = str(hiddenSize)+"_"+str(depth)+"_"+str(bidirectional)+"_"+str(int(time.time()))
 model = RNN(inputSize, hiddenSize, depth, outputSize, bidirectional).double()
   
 batcher = Batcher(dataPaths, sequenceLength, minibatchSize)
