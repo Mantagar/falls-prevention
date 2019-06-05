@@ -12,4 +12,4 @@ try:
   #Old RNN definition did not contain bidirectional field
   print("Bidirectional:\t" + str(model.bidirectional), flush=True)
 except:
-  print("Bidirectional:\tTrue", flush=True)
+  print("Bidirectional:\tFalse", flush=True)
