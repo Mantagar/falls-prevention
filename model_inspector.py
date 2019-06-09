@@ -12,4 +12,4 @@ try:
   print("Bidirectional:\t" + str(model.bidirectional), flush=True)
 except:
   #Old RNN definition did not contain bidirectional field
-  print("Bidirectional:\tUnknown", flush=True)
+  print("Bidirectional:\t" + str(model.rnn.bidirectional), flush=True)
