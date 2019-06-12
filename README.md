@@ -63,6 +63,8 @@ In order to view contents of a csv file (smoothingFactor defines how many sample
 python visualize.py pathToCsv smoothingFactor
 ```
 
+**Whenever smoothingFactor equal to 0 is provided the script plots just the maximum values achieved by the series.**
+
 # Data sets generation
 Script below balances and divides data into 3 sets (70% training, 15% validation and test).
 ```
