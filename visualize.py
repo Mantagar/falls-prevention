@@ -31,11 +31,13 @@ for col in avgdf:
     colors.append('green')
 if step==0:
   pp.scatter(x=id_max, y=val_max, color=colors)
+  pp.xlabel('Steps')
+  pp.ylabel('Classification (maximum)')
 else:
   avgdf.plot(kind='line', color=colors, legend=None)
-pp.xlabel('Steps')
-pp.ylabel('Classification (average of '+str(step)+' steps)')
-#pp.legend(title='Series')
-pp.title('')
+  pp.xlabel('Steps')
+  pp.ylabel('Classification (average of '+str(step)+' steps)')
+  #pp.legend(title='Series')
+  pp.title('')
 
 pp.show()
