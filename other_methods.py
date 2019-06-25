@@ -4,6 +4,7 @@ from sklearn.neighbors import KNeighborsClassifier
 from sklearn.naive_bayes import GaussianNB
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.svm import LinearSVC
+import sys
 
 dataPaths, _, _ = loadDataPaths("data/training_set.txt")
 
@@ -11,54 +12,81 @@ testDataPaths, _, _ = loadDataPaths("data/test_set.txt")
 testDataPaths2, _, _ = loadDataPaths("data/validation_set.txt")
 testDataPaths += testDataPaths2
 
-#NONSEQUENTIAL
-print("Preparing traing data")
-batcher = Batcher(dataPaths, 1, 1)
-X = []
-Y = []
-while batcher.hasNextBatch():
-  x, y = batcher.nextBatch()
-  x = list(x.reshape(2).numpy())
-  y = list(y.numpy()[0])
-  X.append(x)
-  Y.append(y)
-  
-print("Preparing test data")
-batcher = Batcher(testDataPaths, 1, 1)
-tX = []
-tY = []
-while batcher.hasNextBatch():
-  x, y = batcher.nextBatch()
-  x = list(x.reshape(2).numpy())
-  y = list(y.numpy()[0])
-  tX.append(x)
-  tY.append(y)
-'''
-#SUMMED SEQUENTIAL
-print("Preparing traing data")
-batcher = Batcher(dataPaths, 300, 1)
-X = []
-Y = []
-while batcher.hasNextBatch():
-  x, y = batcher.nextBatch()
-  x = list(x.reshape(300,2).numpy())
-  x = [v[0]+v[1] for v in x]
-  y = list(y.numpy()[0])
-  X.append(x)
-  Y.append(y)
-  
-print("Preparing test data")
-batcher = Batcher(testDataPaths, 300, 1)
-tX = []
-tY = []
-while batcher.hasNextBatch():
-  x, y = batcher.nextBatch()
-  x = list(x.reshape(300,2).numpy())
-  x = [v[0]+v[1] for v in x]
-  y = list(y.numpy()[0])
-  tX.append(x)
-  tY.append(y)
-'''
+mode = int(sys.argv[1])
+if mode == 0:
+  print("Nonsequential mode")
+  #NONSEQUENTIAL
+  print("Preparing traing data")
+  batcher = Batcher(dataPaths, 1, 1)
+  X = []
+  Y = []
+  while batcher.hasNextBatch():
+    x, y = batcher.nextBatch()
+    x = list(x.reshape(2).numpy())
+    y = list(y.numpy()[0])
+    X.append(x)
+    Y.append(y)
+    
+  print("Preparing test data")
+  batcher = Batcher(testDataPaths, 1, 1)
+  tX = []
+  tY = []
+  while batcher.hasNextBatch():
+    x, y = batcher.nextBatch()
+    x = list(x.reshape(2).numpy())
+    y = list(y.numpy()[0])
+    tX.append(x)
+    tY.append(y)
+elif mode == 1:
+  print("Summed sequential mode")
+  #SUMMED SEQUENTIAL
+  print("Preparing traing data")
+  batcher = Batcher(dataPaths, 300, 1)
+  X = []
+  Y = []
+  while batcher.hasNextBatch():
+    x, y = batcher.nextBatch()
+    x = list(x.reshape(300,2).numpy())
+    x = [v[0]+v[1] for v in x]
+    y = list(y.numpy()[0])
+    X.append(x)
+    Y.append(y)
+    
+  print("Preparing test data")
+  batcher = Batcher(testDataPaths, 300, 1)
+  tX = []
+  tY = []
+  while batcher.hasNextBatch():
+    x, y = batcher.nextBatch()
+    x = list(x.reshape(300,2).numpy())
+    x = [v[0]+v[1] for v in x]
+    y = list(y.numpy()[0])
+    tX.append(x)
+    tY.append(y)
+elif mode == 2:
+  print("Flattened sequential mode")
+  #FLATTENED SEQUENTIAL
+  print("Preparing traing data")
+  batcher = Batcher(dataPaths, 300, 1)
+  X = []
+  Y = []
+  while batcher.hasNextBatch():
+    x, y = batcher.nextBatch()
+    x = list(x.reshape(600).numpy())
+    y = list(y.numpy()[0])
+    X.append(x)
+    Y.append(y)
+    
+  print("Preparing test data")
+  batcher = Batcher(testDataPaths, 300, 1)
+  tX = []
+  tY = []
+  while batcher.hasNextBatch():
+    x, y = batcher.nextBatch()
+    x = list(x.reshape(600).numpy())
+    y = list(y.numpy()[0])
+    tX.append(x)
+    tY.append(y)
   
   
 print("Creating classifiers")
