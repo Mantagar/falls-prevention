@@ -81,6 +81,8 @@ python conf_matrix.py pathToCsv threshold
 # Misc
 dataset_inspector.py - prints dataset information
 
+other_methods.py - calculates scores for the classical classification algorithms
+
 plot_loss.py - prints loss (in case it was forwared to a file from trainer.py)
 
 mat_to_csv.py - if "Mat/" directory exists then csv data may be generated from matlab files
